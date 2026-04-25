@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register • Kebede Yimer Digital Café</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar (same as index) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Kebede Yimer</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#menu">Menu</a></li>
+                <!-- <li><a href="index.html#roasting">Roasting</a></li> -->
+            </ul>
+            <div class="nav-actions">
+                <button onclick="location.href='login.html'" class="login-btn">Login</button>
+                <button onclick="toggleMobileMenu()" class="hamburger"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <ul id="mobile-menu" class="mobile-menu">
+            <li><a href="index.html" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="index.html#menu" onclick="toggleMobileMenu()">Menu</a></li>
+            <li><a href="index.html#roasting" onclick="toggleMobileMenu()">Roasting</a></li>
+        </ul>
+    </nav>
+
+    <!-- Register Form -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-box">
+                <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+                <p>Join Kebede Yimer and get fresh coffee delivered fast</p>
+
+                <form id="register-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Zelalem Kebede" required>
+                    </div>
+                    
+                   <div class="form-group">
+                        <label>location</label>
+                        <input type="text" id="location" placeholder="location" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="you@email.com" required>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label>Phone No.</label>
+                        <input type="number" id="phone" placeholder="09......." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="auth-btn">Register Now</button>
+                </form>
+
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="login.html">Login here</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+   <script>
+    async function handleRegister(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        const res = await fetch('api/register.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+            alert("🎉 Registration Successful!");
+            window.location.href = "login.html";
+        } else {
+            alert("❌ " + data.message);
+        }
+    }
+</script>
+</body>
+</html>

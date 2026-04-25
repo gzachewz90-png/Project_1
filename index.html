@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebede Yimer • Digital Café</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Kebede Yimer</a>
+            
+            <!-- Desktop Menu -->
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#roasting">Roasting Process</a></li>
+            </ul>
+            
+            <!-- Right side actions -->
+            <div class="nav-actions">
+                <button onclick="showCart()" class="cart-btn" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count-badge" class="cart-count">0</span>
+                </button>
+                   <button onclick="location.href='register.html'" class="register-btn">Register</button>
+                   <button onclick="location.href='login.html'" class="login-btn">Login</button>
+                <!-- Hamburger for mobile -->
+                <button onclick="toggleMobileMenu()" class="hamburger" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <ul id="mobile-menu" class="mobile-menu">
+            <li><a href="#" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="#menu" onclick="toggleMobileMenu()">Menu</a></li>
+            <li><a href="#roasting" onclick="toggleMobileMenu()">Roasting Process</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Kebede Yimer Lounge</h1>
+            <p>Fresh coffee • Warm vibes • Delivered in seconds</p>
+            <a href="#menu" class="hero-btn">Browse Menu</a>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <!-- Search & Categories -->
+            <div class="filters">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="🔎 Search coffee, pastries..." 
+                    onkeyup="filterMenu()">
+                
+                <div id="category-buttons" class="category-buttons"></div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menu-grid" class="menu-grid"></div>
+        </div>
+    </section>
+
+    <!-- Coffee Roasting Process Section -->
+    <section id="roasting" class="roasting-section">
+        <div class="container">
+            <h2 class="section-title">From Green Bean to Your Cup</h2>
+            <p class="section-subtitle">Discover the art and science behind every perfect cup at Bean Haven. Our master roasters follow this traditional 5-step process to unlock the deepest flavors.</p>
+            
+            <div id="roasting-grid" class="roasting-grid">
+                <!-- Step 1 -->
+                <div class="roast-card" onclick="toggleRoastDetail(this)">
+                    <div class="roast-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="roast-number">01</div>
+                    <h3>1. Green Bean Arrival</h3>
+                    <p class="roast-short">Fresh, unroasted beans from Ethiopia’s finest farms arrive weekly.</p>
+                    <div class="roast-detail">
+                        <p>These beans are hand-selected for quality and moisture content. We store them in a climate-controlled room to preserve freshness before roasting begins.</p>
+                        <strong>Key Temperature:</strong> Room temperature (18–22°C)<br>
+                        <strong>Duration:</strong> Inspection &amp; resting (1–2 days)
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="roast-card" onclick="toggleRoastDetail(this)">
+                    <div class="roast-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="roast-number">02</div>
+                    <h3>2. Preheating &amp; Loading</h3>
+                    <p class="roast-short">Our drum roaster is preheated to the perfect starting temperature.</p>
+                    <div class="roast-detail">
+                        <p>Beans are loaded into the preheated roaster. Hot air begins to circulate, gently removing any remaining moisture from the green beans.</p>
+                        <strong>Key Temperature:</strong> 180–200°C<br>
+                        <strong>Duration:</strong> 4–6 minutes (drying phase)
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="roast-card" onclick="toggleRoastDetail(this)">
+                    <div class="roast-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="roast-number">03</div>
+                    <h3>3. First Crack</h3>
+                    <p class="roast-short">The magic moment — beans expand and produce the famous “first crack” sound.</p>
+                    <div class="roast-detail">
+                        <p>This is when the Maillard reaction begins. Sugars and amino acids create hundreds of new flavor compounds. We listen carefully to control the roast profile.</p>
+                        <strong>Key Temperature:</strong> 205–210°C<br>
+                        <strong>Duration:</strong> 8–10 minutes total roast time
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="roast-card" onclick="toggleRoastDetail(this)">
+                    <div class="roast-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <div class="roast-number">04</div>
+                    <h3>4. Development &amp; Cooling</h3>
+                    <p class="roast-short">Flavor is locked in, then beans are rapidly cooled to stop the roast.</p>
+                    <div class="roast-detail">
+                        <p>We decide the exact moment to drop the beans based on desired roast level (light, medium, or dark). Immediate cooling preserves the delicate aromas.</p>
+                        <strong>Key Temperature:</strong> Drop at 220–240°C<br>
+                        <strong>Duration:</strong> 1–2 minutes cooling
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="roast-card" onclick="toggleRoastDetail(this)">
+                    <div class="roast-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="roast-number">05</div>
+                    <h3>5. Resting &amp; Packaging</h3>
+                    <p class="roast-short">Beans rest for 24–48 hours before being packed fresh for you.</p>
+                    <div class="roast-detail">
+                        <p>CO₂ is released during resting, which improves taste. Finally, the beans are sealed in our signature bags with a one-way valve to keep them at peak freshness.</p>
+                        <strong>Key Temperature:</strong> Room temperature<br>
+                        <strong>Duration:</strong> 24–48 hours resting
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-note">
+                <i class="fas fa-info-circle"></i>
+                Every roast is logged with temperature curves so we can consistently deliver the exact flavor profile you love.
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button onclick="hideCart()" class="close-btn">✕</button>
+        </div>
+        
+        <div id="cart-items" class="cart-items"></div>
+        
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Total</span>
+                <strong id="cart-total">$0.00</strong>
+            </div>
+            
+            <button onclick="placeOrder()" class="order-btn">
+                Place Order • <span id="order-total">$0.00</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="cart-overlay" onclick="if(event.target === this) hideCart()"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Kebede Yimer • Made with ❤️ in Gondar</p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
